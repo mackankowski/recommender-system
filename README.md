@@ -1,12 +1,19 @@
 # Recommender system
 
-Technology stack:
+Backend layer for e-commerce platform recommendations.
 
-- Spring Boot framework (and dependencies)
+__Features:__
+
+- User-Based Recommender
+- Item-Based Recommender
+
+__Technology stack:__
+
+- Spring Boot framework (with dependencies)
 - Apache Mahout
 - [?] Database
 
-## Getting starded
+## Getting started
 
 1. Open the project in IntelliJ IDEA (recommended)
 

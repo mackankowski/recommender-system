@@ -1,4 +1,4 @@
-###Recommender system
+# Recommender system
 
 Technology stack:
 
@@ -6,9 +6,11 @@ Technology stack:
 - Apache Mahout
 - [?] Database
 
-Open the project in IntelliJ IDEA (recommended)
+## Getting starded
 
-Run application...
+1. Open the project in IntelliJ IDEA (recommended)
+
+2. Run application...
 
 To checkout the service:
 

@@ -1,4 +1,4 @@
-package hello;
+package recommender;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -22,7 +22,7 @@ public class UserBasedController {
     public String print(){
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource("datasets.csv").getFile());
+            File file = new File(classLoader.getResource("dataset.csv").getFile());
             DataModel model = new FileDataModel(new File(file.getAbsolutePath()));
             UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
             UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model);

@@ -19,8 +19,8 @@ public class UserBasedController {
     public ResponseEntity<List<Item>> listAllItems() {
         List<Item> recommendedItems = itemService.findAllItems();
         if(recommendedItems.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<Item>>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(recommendedItems, HttpStatus.OK);
+        return new ResponseEntity<List<Item>>(recommendedItems, HttpStatus.OK);
     }
 }

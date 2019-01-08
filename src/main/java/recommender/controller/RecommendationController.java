@@ -22,6 +22,7 @@ public class RecommendationController {
     public ResponseEntity<List<Item>> listAllItemsUserBased(@PathVariable("id") long userId) {
         List<Item> recommendedItems = itemService.fillItemsUserBased(userId);
         if(recommendedItems.isEmpty()){
+            System.out.println("Empty");
             return new ResponseEntity<List<Item>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Item>>(recommendedItems, HttpStatus.OK);
@@ -31,6 +32,7 @@ public class RecommendationController {
     public ResponseEntity<List<Item>> listAllItemsItemBased(@PathVariable("id") long userId) {
         List<Item> recommendedItems = itemService.fillItemsItemBased(userId);
         if(recommendedItems.isEmpty()){
+            System.out.println("Empty");
             return new ResponseEntity<List<Item>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Item>>(recommendedItems, HttpStatus.OK);

@@ -38,8 +38,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> fillItemsItemBased(long userId) {
         List<Item> items = new ArrayList<>();
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource("dataset.csv").getFile());
+            //ClassLoader classLoader = getClass().getClassLoader();
+            //File file = new File(classLoader.getResource("dataset.csv").getFile());
+            File file = new File("dataset.csv");
             DataModel model = new FileDataModel(new File(file.getAbsolutePath()));
             ItemSimilarity itemSimilarity = new EuclideanDistanceSimilarity(model);
             Recommender itemRecommender = new GenericItemBasedRecommender(model,itemSimilarity);
@@ -50,6 +51,7 @@ public class ItemServiceImpl implements ItemService {
         } catch (Exception e)
         {
             items.clear();
+            System.out.println(e);
         }
         return items;
     }
@@ -58,8 +60,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> fillItemsUserBased(long userId) {
         List<Item> items = new ArrayList<>();
         try {
-                ClassLoader classLoader = getClass().getClassLoader();
-                File file = new File(classLoader.getResource("dataset.csv").getFile());
+                //ClassLoader classLoader = getClass().getClassLoader();
+                //File file = new File(classLoader.getResource("dataset.csv").getFile());
+                File file = new File("dataset.csv");
                 DataModel model = new FileDataModel(new File(file.getAbsolutePath()));
                 UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
                 UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model);
@@ -71,6 +74,7 @@ public class ItemServiceImpl implements ItemService {
             } catch (Exception e)
             {
                 items.clear();
+                System.out.println(e);
             }
         return items;
     }

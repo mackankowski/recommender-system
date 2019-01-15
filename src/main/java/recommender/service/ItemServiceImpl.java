@@ -20,27 +20,25 @@ import recommender.model.Item;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 @Service("itemService")
 public class ItemServiceImpl implements ItemService {
-    //TO DELETE ??
-    private static List<Item> items;
-    private static int recommendedItemsCount = 2;
 
-
-    //TO DELETE ??
-    public List<Item> findAllItems(long userId) {
-        items = fillItemsUserBased(userId);
-        return items;
-    }
+    private static int recommendedItemsCount = 5;
+    private static String fileCsv = "table.csv";
+    private static String popularCsv = "popular.csv";
 
     @Override
     public List<Item> fillItemsItemBased(long userId) {
         List<Item> items = new ArrayList<>();
         try {
             //ClassLoader classLoader = getClass().getClassLoader();
-            //File file = new File(classLoader.getResource("dataset.csv").getFile());
-            File file = new File("dataset.csv");
+            //File file = new File(classLoader.getResource("table.csv").getFile());
+            File file = new File(fileCsv);
             DataModel model = new FileDataModel(new File(file.getAbsolutePath()));
             ItemSimilarity itemSimilarity = new EuclideanDistanceSimilarity(model);
             Recommender itemRecommender = new GenericItemBasedRecommender(model,itemSimilarity);
@@ -61,8 +59,8 @@ public class ItemServiceImpl implements ItemService {
         List<Item> items = new ArrayList<>();
         try {
                 //ClassLoader classLoader = getClass().getClassLoader();
-                //File file = new File(classLoader.getResource("dataset.csv").getFile());
-                File file = new File("dataset.csv");
+                //File file = new File(classLoader.getResource("table.csv").getFile());
+                File file = new File(fileCsv);
                 DataModel model = new FileDataModel(new File(file.getAbsolutePath()));
                 UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
                 UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model);
@@ -78,4 +76,24 @@ public class ItemServiceImpl implements ItemService {
             }
         return items;
     }
+
+    @Override
+    public List<Integer> popularItems() {
+        List<Integer> items = new ArrayList<>();
+        BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(popularCsv));
+			String line = reader.readLine();
+			while (line != null) {
+				System.out.println(line);
+				items.add(Integer.parseInt(line));
+				line = reader.readLine();
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        return items;
+    }
+
 }

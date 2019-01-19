@@ -4,8 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>gs-spring-boot</artifactId>
+    <artifactId>recommender</artifactId>
     <version>0.1.0</version>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -35,6 +36,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+		        <configuration>
+		            <executable>true</executable>
+		        </configuration>
             </plugin>
         </plugins>
     </build>
